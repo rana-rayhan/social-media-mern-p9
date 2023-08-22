@@ -32,7 +32,7 @@ const Chats = () => {
   //
   // Connect to Socket.io
   useEffect(() => {
-    socket.current = io("http://localhost:8800");
+    socket.current = io("https://social-media-mern-socket.onrender.com:8800");
     socket.current.emit("new-user-add", user._id);
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
