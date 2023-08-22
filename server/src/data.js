@@ -1,0 +1,50 @@
+const data = {
+  users: [
+    {
+      name: "Ryan rahman",
+      email: "test1@gmail.com",
+      password: "Test71@",
+      isAdmin: false,
+      image: "default.jpg",
+      coverImage: "default.jpg",
+      about: "About You",
+      livesin: "Lives in ?",
+      worksAt: "Work status",
+      relationship: "Relationship status",
+      followers: [],
+      following: [],
+    },
+    {
+      name: "Rumpa Fahrid",
+      email: "test2@gmail.com",
+      password: "Test71@",
+      isAdmin: false,
+      image: "default.jpg",
+      coverImage: "default.jpg",
+      about: "About You",
+      livesin: "Lives in ?",
+      worksAt: "Work status",
+      relationship: "Relationship status",
+      followers: [],
+      following: [],
+    },
+    {
+      name: "Pial rahman",
+      email: "test3@gmail.com",
+      password: "Test71@",
+      isAdmin: false,
+      image: "default.jpg",
+      coverImage: "default.jpg",
+      about: "About You",
+      livesin: "Lives in ?",
+      worksAt: "Work status",
+      relationship: "Relationship status",
+      followers: [],
+      following: [],
+    },
+  ],
+};
+
+module.exports = {
+  data,
+};
