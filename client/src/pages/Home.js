@@ -28,7 +28,7 @@ const Home = () => {
     // Get the initial user from local storage
     const initialUser = JSON.parse(localStorage.getItem("loggedUser"));
     if (!initialUser) {
-      navigate("/auth");
+      navigate("/login");
     } else {
       getUserById(initialUser.user._id).then((data) => {
         dispatch(addLoggedUser(data.payload));
@@ -78,7 +78,7 @@ const Home = () => {
           </div>
         ) : (
           <div className="position-relative" style={{ height: "75vh" }}>
-            <Link style={{ textDecoration: "none" }} to="/auth">
+            <Link style={{ textDecoration: "none" }} to="/login">
               <h3 className="position-absolute top-50">
                 Please log in or Sign up <BiLogIn />
               </h3>

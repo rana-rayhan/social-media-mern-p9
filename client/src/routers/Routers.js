@@ -1,11 +1,12 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Chats from "../pages/Chats";
-import Index from "../pages/auth/Index";
 import Home from "../pages/Home";
 import UpdatePost from "../components/posts/UpdatePost";
 import Profile from "../pages/Profile";
 import UpdateUser from "../components/users/UpdateUser";
+import Login from "../pages/auth/Login";
+import SignUp from "../pages/auth/SignUp";
 
 const Routers = () => {
   return (
@@ -13,9 +14,10 @@ const Routers = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/post-update" element={<UpdatePost />} />
         <Route path="/update-user" element={<UpdateUser />} />
-        <Route path="/auth" element={<Index />} />
         <Route path="/chats" element={<Chats />} />
       </Routes>
     </BrowserRouter>

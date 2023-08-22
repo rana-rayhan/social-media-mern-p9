@@ -5,7 +5,7 @@ import FileBase from "react-file-base64";
 import { base_url } from "../../api/api";
 import { addLoggedUser } from "../../components/users/usersSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,6 @@ const SignUp = () => {
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
     image: "",
   });
 
@@ -35,6 +34,7 @@ const SignUp = () => {
       await axios.post(`${base_url}/api/auth/register`, userData);
 
       setMessage("You are registered successfully, please login");
+      navigate("/login");
       setTimeout(() => {
         setMessage("");
       }, 9000);
@@ -48,8 +48,20 @@ const SignUp = () => {
 
   return (
     <div className=" container p-4">
+      <h4 className="text-center">Please Signup</h4>
+      <Link
+        className="text-decoration-none text-muted text-center"
+        to={"/login"}
+      >
+        <p>If you already have account, please login</p>
+      </Link>
+
       {message && <p className=" text-danger text-center fw-bold">{message}</p>}
-      <form encType="multipart/form-data" onSubmit={handleSubmit}>
+      <form
+        encType="multipart/form-data"
+        className="col-6 m-auto"
+        onSubmit={handleSubmit}
+      >
         <div className="mb-2">
           <label htmlFor="Name" className="form-label">
             Name
@@ -95,7 +107,7 @@ const SignUp = () => {
             id="password"
           />
         </div>
-        <div className="mb-2">
+        {/* <div className="mb-2">
           <label htmlFor="confirmPassword" className="form-label">
             Confirm Password
           </label>
@@ -108,7 +120,7 @@ const SignUp = () => {
             className="form-control"
             id="confirmPassword"
           />
-        </div>
+        </div> */}
         <div className="mb-2">
           <label htmlFor="image" className="form-label d-block">
             Profile

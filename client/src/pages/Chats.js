@@ -59,7 +59,7 @@ const Chats = () => {
   useEffect(() => {
     const initialUser = JSON.parse(localStorage.getItem("loggedUser"));
     if (!initialUser) {
-      navigate("/auth");
+      navigate("/login");
     } else {
       getUsers().then((data) => {
         const users = data.payload.filter(
@@ -177,7 +177,7 @@ const Chats = () => {
         </div>
       ) : (
         <div className="position-relative" style={{ height: "75vh" }}>
-          <Link style={{ textDecoration: "none" }} to="/auth">
+          <Link style={{ textDecoration: "none" }} to="/login">
             <h3 className="position-absolute top-50">
               Please log in or Sign up <BiLogIn />
             </h3>

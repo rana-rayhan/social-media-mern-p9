@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   base_url,
@@ -21,14 +21,15 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(null);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("loggedUser"));
     if (user) {
       getUserById(user.user._id).then((data) => {
         dispatch(addLoggedUser(data.payload));
+        navigate("/");
       });
-      navigate("/");
     }
   }, [dispatch, navigate]);
 
@@ -39,7 +40,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsError(null);
     setLoading(true);
     axios
       .post(`${base_url}/api/auth/login`, userData)
@@ -53,7 +54,6 @@ const Login = () => {
         fetchTimelinePost(user.user._id).then((res) => {
           dispatch(userTimelinePosts(res.payload));
         });
-
         // get all user for friend suggestions
         return getUsers();
       })
@@ -67,22 +67,30 @@ const Login = () => {
       })
       .then((post) => {
         dispatch(userPosts(post.payload));
-      })
-
-      .catch((error) => {
-        console.log(error.response.data.message);
-      })
-      .finally(() => {
         setLoading(false);
         navigate("/");
+      })
+      .catch((error) => {
+        setLoading(false);
+        setIsError(error.response.data.message);
       });
   };
 
   return (
-    <div className=" container p-4">
-      <form onSubmit={handleSubmit}>
+    <div className="container p-4">
+      <h4 className="text-center">Please login</h4>
+      <Link
+        className="text-decoration-none text-muted text-center"
+        to={"/signup"}
+      >
+        <p>If you dont't have account, please signup</p>
+      </Link>
+      <form className="col-6 m-auto" onSubmit={handleSubmit}>
         <div className="mb-3">
           {loading && <p className="text-danger fw-bold">Loading...</p>}
+          {isError && (
+            <p className=" text-danger text-center fw-bold">{isError}</p>
+          )}
           <label htmlFor="email" className="form-label">
             Email address
           </label>

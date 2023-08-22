@@ -8,7 +8,7 @@ const InfoCard = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("loggedUser");
-    navigate("/auth");
+    navigate("/login");
   };
   const user = useSelector((state) => state.loggedUser.user);
   return (

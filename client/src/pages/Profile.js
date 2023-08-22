@@ -8,8 +8,18 @@ import ProfileCard from "../components/profile/ProfileCard";
 import InfoCard from "../components/users/InfoCard";
 import LogoSearch from "../components/logoSearch/LogoSearch";
 import FollowersCard from "../components/profile/FollowersCard";
-import { fetchTimelinePost, fetchUserPost, getUserById, getUsers } from "../api/api";
-import { addAllUser, addLoggedUser, userPosts, userTimelinePosts } from "../components/users/usersSlice";
+import {
+  fetchTimelinePost,
+  fetchUserPost,
+  getUserById,
+  getUsers,
+} from "../api/api";
+import {
+  addAllUser,
+  addLoggedUser,
+  userPosts,
+  userTimelinePosts,
+} from "../components/users/usersSlice";
 import InfoSide from "../components/infoSide/InfoSide";
 
 const Home = () => {
@@ -17,12 +27,11 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     // Get the initial user from local storage
     const initialUser = JSON.parse(localStorage.getItem("loggedUser"));
     if (!initialUser) {
-      navigate("/auth");
+      navigate("/login");
     } else {
       getUserById(initialUser.user._id).then((data) => {
         dispatch(addLoggedUser(data.payload));
@@ -70,12 +79,12 @@ const Home = () => {
               <PostSide />
             </div>
             <div className="col-12 col-lg-3">
-            <InfoSide />
+              <InfoSide />
             </div>
           </div>
         ) : (
           <div className="position-relative" style={{ height: "75vh" }}>
-            <Link style={{ textDecoration: "none" }} to="/auth">
+            <Link style={{ textDecoration: "none" }} to="/login">
               <h3 className="position-absolute top-50">
                 Please log in or Sign up <BiLogIn />
               </h3>
