@@ -1,8 +1,7 @@
 import axios from "axios";
 // base url
-export const base_url = "https://socialmedia-llrb.onrender.com";
-export const tempUrl = "https://socialmedia-llrb.onrender.com";
-// export const tempUrl = "http://localhost:4000/";
+export const base_url = "http://localhost:4000";
+export const tempUrl = "http://localhost:4000";
 
 // get user by
 export const getUsers = async () => {
