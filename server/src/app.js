@@ -13,11 +13,6 @@ const messageRouter = require("./routers/messageRouter");
 const authRouter = require("./routers/authRouter");
 const postRouter = require("./routers/postRouter");
 const seedRouter = require("./routers/seedRouter");
-
-// static react app for deploy in AWS ---***
-const path = require("path");
-const _dirname = path.dirname("");
-const buildPath = path.join(_dirname, "public/build");
 //
 //
 // express app
@@ -41,7 +36,6 @@ app.use(limiter);
 app.use(xssClean());
 app.use(morgan("dev"));
 app.use(express.json({ limit: "10mb" }));
-app.use(express.static(buildPath));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 //
 //
