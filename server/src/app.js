@@ -13,6 +13,10 @@ const messageRouter = require("./routers/messageRouter");
 const authRouter = require("./routers/authRouter");
 const postRouter = require("./routers/postRouter");
 const seedRouter = require("./routers/seedRouter");
+//
+//
+// express app
+const app = express();
 
 // socket io start ---***
 const io = require("socket.io")(8800, {
@@ -20,9 +24,7 @@ const io = require("socket.io")(8800, {
     origin: "http://localhost:3000",
   },
 });
-
 let activeUsers = [];
-
 io.on("connection", (socket) => {
   // add new User
   socket.on("new-user-add", (newUserId) => {
@@ -55,10 +57,6 @@ io.on("connection", (socket) => {
   });
 });
 // socket io end ---***
-//
-//
-// express app
-const app = express();
 //
 //
 // Requiest limiter module
