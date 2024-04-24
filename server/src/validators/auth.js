@@ -8,7 +8,7 @@ const validateCreateUser = [
     .notEmpty()
     .withMessage("Name is required")
     .isLength({ min: 3, max: 31 })
-    .withMessage("Name length must be 3-31 characters long"),
+    .withMessage("Name length must be 3-31 characters."),
   body("email")
     .trim()
     .notEmpty()
@@ -20,12 +20,12 @@ const validateCreateUser = [
     .notEmpty()
     .withMessage("Password is required")
     .isLength({ min: 6 })
-    .withMessage("Password length must be min 6 characters long")
+    .withMessage("Password must be min 6 characters.")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?8])[A-Za-z\d@$!%*?8]+$/
     )
     .withMessage(
-      "Password should contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+      "Password must contain uppercase, lowercase, number, special char."
     ),
 ];
 //
@@ -43,12 +43,12 @@ const validateLogin = [
     .notEmpty()
     .withMessage("Password is required")
     .isLength({ min: 6 })
-    .withMessage("Password length must be min 6 characters long")
+    .withMessage("Password must be min 6 characters!")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?8])[A-Za-z\d@$!%*?8]+$/
     )
     .withMessage(
-      "Password should contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+      "Password must contain uppercase, lowercase, number, special char."
     ),
 ];
 //

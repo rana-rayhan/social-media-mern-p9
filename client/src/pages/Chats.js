@@ -32,7 +32,7 @@ const Chats = () => {
   //
   // Connect to Socket.io
   useEffect(() => {
-    socket.current = io("https://social-media-mern-socket.onrender.com:8800");
+    socket.current = io("https://localhost:8800");
     socket.current.emit("new-user-add", user._id);
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
@@ -45,7 +45,6 @@ const Chats = () => {
       socket.current.emit("send-message", sendMessage);
     }
   }, [sendMessage]);
-
   // // Get the message from socket server
   useEffect(() => {
     socket.current.on("recieve-message", (data) => {
@@ -76,6 +75,7 @@ const Chats = () => {
   const checkOnline = (chat) => {
     const chatMember = chat.members.find((member) => member !== user._id);
     const online = onlineUsers.find((user) => user.userId === chatMember);
+    console.log(online);
     return online ? true : false;
   };
   //

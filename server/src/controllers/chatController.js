@@ -1,5 +1,4 @@
 const createError = require("http-errors");
-
 const { successResponse } = require("./responseController");
 const ChatModel = require("../models/chatModel");
 //

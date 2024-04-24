@@ -7,6 +7,7 @@ import Profile from "../pages/Profile";
 import UpdateUser from "../components/users/UpdateUser";
 import Login from "../pages/auth/Login";
 import SignUp from "../pages/auth/SignUp";
+import Error from "../pages/Error";
 
 const Routers = () => {
   return (
@@ -19,6 +20,7 @@ const Routers = () => {
         <Route path="/post-update" element={<UpdatePost />} />
         <Route path="/update-user" element={<UpdateUser />} />
         <Route path="/chats" element={<Chats />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   );

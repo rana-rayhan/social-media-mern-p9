@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import FileBase from "react-file-base64";
-
 import { base_url } from "../../api/api";
 import { addLoggedUser } from "../../components/users/usersSlice";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+
+import "./style.css"; // Import the same "Login.css" file for styling
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("loggedUser"));
@@ -33,110 +35,140 @@ const SignUp = () => {
     try {
       await axios.post(`${base_url}/api/auth/register`, userData);
 
-      setMessage("You are registered successfully, please login");
+      toast.success("Registered successfully. Please login.");
       navigate("/login");
-      setTimeout(() => {
-        setMessage("");
-      }, 9000);
+      // setTimeout(() => {
+      //   setMessage("");
+      // }, 9000);
     } catch (error) {
-      setMessage(error.response.data.message);
-      setTimeout(() => {
-        setMessage("");
-      }, 9000);
+      toast.error(error.response.data.message);
+      // setMessage(error.response.data.message);
+      // setTimeout(() => {
+      //   setMessage("");
+      // }, 9000);
     }
   };
 
   return (
-    <div className=" container p-4">
-      <h4 className="text-center">Please Signup</h4>
-      <Link
-        className="text-decoration-none text-muted text-center"
-        to={"/login"}
-      >
-        <p>If you already have account, please login</p>
-      </Link>
+    <div className="container-fluid loginPage">
+      <Toaster />
+      <div className="row d-flex d-md-flex justify-content-center align-items-center h-100">
+        {/* Sign Up form */}
+        <div className="col-12 col-md-6 d-flex d-md-flex justify-content-center">
+          <form
+            encType="multipart/form-data"
+            className="bg-warning p-4 m-4 shadow-lg"
+            onSubmit={handleSubmit}
+          >
+            <h4 className="text-center fw-bold">Sign Up</h4>
 
-      {message && <p className=" text-danger text-center fw-bold">{message}</p>}
-      <form
-        encType="multipart/form-data"
-        className="col-6 m-auto"
-        onSubmit={handleSubmit}
-      >
-        <div className="mb-2">
-          <label htmlFor="Name" className="form-label">
-            Name
-          </label>
-          <input
-            value={userData.name}
-            type="text"
-            className="form-control"
-            id="name"
-            onChange={(e) => setUserData({ ...userData, name: e.target.value })}
-          />
+            <div className="mb-2">
+              <label htmlFor="password" className="form-label fs-6 p-0 m-0">
+                Name
+              </label>
+              <input
+                value={userData.name}
+                type="text"
+                placeholder="Your full name"
+                className="form-control"
+                id="name"
+                onChange={(e) =>
+                  setUserData({ ...userData, name: e.target.value })
+                }
+              />
+            </div>
+            <div className="mb-2">
+              <label htmlFor="password" className="form-label fs-6 p-0 m-0">
+                Email
+              </label>
+              <input
+                value={userData.email}
+                placeholder="example@gmail.com"
+                onChange={(e) =>
+                  setUserData({ ...userData, email: e.target.value })
+                }
+                type="email"
+                className="form-control"
+                id="email"
+                aria-describedby="emailHelp"
+              />
+            </div>
+
+            <div className="mb-2">
+              <label htmlFor="password" className="form-label fs-6 p-0 m-0">
+                Password
+              </label>
+              <input
+                value={userData.password}
+                placeholder="Example@24"
+                onChange={(e) =>
+                  setUserData({ ...userData, password: e.target.value })
+                }
+                type="password"
+                className="form-control"
+                id="password"
+              />
+            </div>
+
+            <div className="mb-2">
+              <label htmlFor="image" className="form-label d-none">
+                Profile
+              </label>
+              <FileBase
+                type="file"
+                multiple={false}
+                onDone={({ base64 }) =>
+                  setUserData({ ...userData, image: base64 })
+                }
+              />
+            </div>
+            <div className="d-flex justify-content-center mb-2">
+              <button type="submit" className="btn btn-success w-50 me-1">
+                Signup
+              </button>
+              <Link className="btn btn-outline-success w-50 ms-1" to={"/login"}>
+                Login
+              </Link>
+            </div>
+            <span className="form-text">
+              We'll never share your email with anyone else.
+            </span>
+          </form>
         </div>
-        <div className="mb-2">
-          <label htmlFor="email" className="form-label">
-            Email
-          </label>
-          <input
-            value={userData.email}
-            onChange={(e) =>
-              setUserData({ ...userData, email: e.target.value })
-            }
-            type="email"
-            className="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-          />
-          <div id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
+        {/* Sign Up form end */}
+
+        {/* Info desk */}
+        <div className="col-12 col-md-6 d-flex d-md-flex justify-content-center">
+          {/* Info desk start */}
+          <div className="col-12 col-md-6 w-100">
+            {/*  Login text start*/}
+            {/* <div className="">
+              {message && (
+                <p className="text-danger text-center text-sm-center">
+                  {message}
+                </p>
+              )}
+            </div> */}
+            {/* Login text end */}
+
+            <p className="m-0 p-0 w-75 text-muted fw-bold">
+              Unlock the full potential of our platform by creating an account
+              to share your content or explore pre-made posts using our demo
+              credentials.
+            </p>
+            <span className="text-danger fw-bold">
+              Pre-made email: <span className="">test@gmail.com</span>
+            </span>
+            <br />
+            <span className="text-danger fw-bold">
+              Pre-made password: Test71@
+            </span>
+            <hr className="w-75" />
           </div>
+          {/* Info desk end */}
         </div>
-
-        <div className="mb-2">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
-          <input
-            value={userData.password}
-            onChange={(e) =>
-              setUserData({ ...userData, password: e.target.value })
-            }
-            type="password"
-            className="form-control"
-            id="password"
-          />
-        </div>
-        {/* <div className="mb-2">
-          <label htmlFor="confirmPassword" className="form-label">
-            Confirm Password
-          </label>
-          <input
-            value={userData.confirmPassword}
-            onChange={(e) =>
-              setUserData({ ...userData, confirmPassword: e.target.value })
-            }
-            type="password"
-            className="form-control"
-            id="confirmPassword"
-          />
-        </div> */}
-        <div className="mb-2">
-          <label htmlFor="image" className="form-label d-block">
-            Profile
-          </label>
-          <FileBase
-            // className="form-control mb-2"
-            type="file"
-            multiple={false}
-            onDone={({ base64 }) => setUserData({ ...userData, image: base64 })}
-          />
-        </div>
-
-        <button type="submit" className="btn btn-primary">
-          Signup
-        </button>
-      </form>
+        {/* Info desk end */}
+      </div>
     </div>
   );
 };

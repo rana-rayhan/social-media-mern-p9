@@ -21,7 +21,11 @@
   --location: #ef5757;
   --shedule: #e1ae4a;
 }
-
+.loginPage {
+  background-color: var(--yellow);
+  height: 100vh;
+  /* vertical-align: middle; */
+}
 .App {
   background-color: #f7f7f7;
   height: auto;
@@ -103,11 +107,11 @@
   align-items: center;
   justify-content: center;
 }
-.follow>span:nth-of-type(1) {
+.follow > span:nth-of-type(1) {
   font-weight: bold;
 }
 
-.follow>span:nth-of-type(2) {
+.follow > span:nth-of-type(2) {
   color: var(--gray);
   font-size: 13px;
 }
@@ -166,4 +170,15 @@
 }
 .name > span:nth-of-type(2) {
   font-size: 13px;
+}
+
+.myText a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.myText span {
+  font-weight: bold;
+  margin-left: 10px;
+  color: #4cb256;
 }

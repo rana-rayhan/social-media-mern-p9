@@ -77,7 +77,6 @@ const UserTimelinePost = ({ post, currentUser }) => {
             </span>
           </button>
         </div>
-        <div>like</div>
         <div className={isUserPost ? "d-block" : "d-none"}>
           <Link className="" to="/post-update" state={post}>
             <button className="btn btn-warning btn-sm px-3 text-white">

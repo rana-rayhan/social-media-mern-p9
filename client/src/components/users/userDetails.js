@@ -45,13 +45,8 @@ const UserDetails = ({ user, currentUser }) => {
         <div className="col-9">
           {user && (
             <div className="d-flex flex-column">
-              <span className="text-uppercase m-0 p-0 fw-bold d-inline">
-                {user.name}
-              </span>
-              <span
-                style={{ fontSize: "10px" }}
-                className="text-uppercase m-0 p-0 d-inline"
-              >
+              <span className=" m-0 p-0 fw-bold d-inline">{user.name}</span>
+              <span style={{ fontSize: "10px" }} className=" m-0 p-0 d-inline">
                 {user.email}
               </span>
             </div>

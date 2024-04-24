@@ -44,6 +44,7 @@ const UpdateUser = () => {
           <p className=" text-center text-danger fs-3">{updateMsg}</p>
         )}
         <div>
+          <h3 className=" text-center fw-bold">Update your profile</h3>
           <label htmlFor="name">Name</label>
           <input
             className="input-group border-0 p-2 m-2 rounded"

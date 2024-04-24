@@ -7,7 +7,7 @@ const FollowersCard = () => {
 
   return (
     <div
-      style={{ maxHeight: "80vh" }}
+      style={{ maxHeight: "50vh" }}
       className="FollowersCard overflow-scroll bg-white p-3"
     >
       <h5 className="fw-bolder text-center m-0 p-0">Users you can follow</h5>

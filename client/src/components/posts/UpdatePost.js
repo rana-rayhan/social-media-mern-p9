@@ -40,6 +40,9 @@ const UpdatePost = () => {
           <p className=" text-center text-danger fs-3">{updateMsg}</p>
         )}
         <div>
+          <label htmlFor="text" className=" fw-bold text-info fs-4 text-center">
+            Updated your post
+          </label>
           <input
             className="input-group border-0 p-2 m-2 rounded"
             value={postData.desc}
@@ -55,7 +58,9 @@ const UpdatePost = () => {
             onDone={({ base64 }) => setPostData({ ...postData, image: base64 })}
           />
         </div>
-        <button className="btn btn-sm w-100 text-white fw-bold btn-warning p-2 m-2">Update</button>
+        <button className="btn btn-sm w-100 text-white fw-bold btn-warning p-2 m-2">
+          Update
+        </button>
       </form>
     </div>
   );

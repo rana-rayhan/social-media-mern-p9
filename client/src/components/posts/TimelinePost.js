@@ -6,7 +6,7 @@ const TimelinePost = () => {
   const { user, timelinePosts } = useSelector((state) => state.loggedUser);
 
   return (
-    <div style={{maxHeight:"710px"}} className="d-flex flex-column gap-3 overflow-scroll">
+    <div style={{maxHeight:"824px"}} className="d-flex flex-column gap-3 overflow-scroll">
       {timelinePosts &&
         timelinePosts.map((post) => (
           <div key={post._id}>
