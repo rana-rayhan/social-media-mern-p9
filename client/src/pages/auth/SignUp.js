@@ -67,6 +67,7 @@ const SignUp = () => {
                 Name
               </label>
               <input
+                required
                 value={userData.name}
                 type="text"
                 placeholder="Your full name"
@@ -82,6 +83,7 @@ const SignUp = () => {
                 Email
               </label>
               <input
+                required
                 value={userData.email}
                 placeholder="example@gmail.com"
                 onChange={(e) =>
@@ -99,6 +101,7 @@ const SignUp = () => {
                 Password
               </label>
               <input
+                required
                 value={userData.password}
                 placeholder="Example@24"
                 onChange={(e) =>

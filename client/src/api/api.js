@@ -1,7 +1,12 @@
 import axios from "axios";
+
+// Localhost
+// export const tempUrl = process.env.REACT_APP_LOCAL_HOST;
+// export const base_url = process.env.REACT_APP_LOCAL_HOST;
+
 // base url
-export const base_url = "http://localhost:4000";
-export const tempUrl = "http://localhost:4000";
+export const base_url = process.env.REACT_APP_BASE_URL;
+export const tempUrl = process.env.REACT_APP_BASE_URL;
 
 // get user by
 export const getUsers = async () => {

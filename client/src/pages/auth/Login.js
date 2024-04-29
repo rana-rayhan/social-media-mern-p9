@@ -96,6 +96,7 @@ const Login = () => {
                 Email
               </label>
               <input
+                required
                 value={userData.email}
                 placeholder="example@gmail.com"
                 onChange={(e) =>
@@ -112,6 +113,7 @@ const Login = () => {
                 Password
               </label>
               <input
+                required
                 value={userData.password}
                 placeholder="Example@24"
                 onChange={(e) =>

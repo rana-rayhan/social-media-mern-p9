@@ -18,7 +18,10 @@ const userSchema = new mongoose.Schema(
     worksAt: { type: String, default: "Work status" },
     relationship: { type: String, default: "Relationship status" },
     followers: [],
-    following: [],
+    following: {
+      type: [String],
+      default: ["64d80cb8ff59986048a21977"],
+    },
   },
   { timestamps: true }
 );
