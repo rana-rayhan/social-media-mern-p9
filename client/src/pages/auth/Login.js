@@ -22,7 +22,7 @@ import {
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   // const [isError, setIsError] = useState(null);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // setIsError(null);
-    // setLoading(true);
+    setLoading(true);
     axios
       .post(`${base_url}/api/auth/login`, userData)
       .then((res) => {
@@ -70,13 +70,13 @@ const Login = () => {
       })
       .then((post) => {
         dispatch(userPosts(post.payload));
-        // setLoading(false);
+        setLoading(false);
         navigate("/");
       })
       .catch((error) => {
-        // setLoading(false);
+        setLoading(false);
         // setIsError(error.response.data.message);
-        toast.error(error.response.data.message);
+        toast.error(error?.response?.data?.message);
       });
   };
 
@@ -97,6 +97,7 @@ const Login = () => {
               </label>
               <input
                 required
+                autoComplete="email"
                 value={userData.email}
                 placeholder="example@gmail.com"
                 onChange={(e) =>
@@ -114,6 +115,7 @@ const Login = () => {
               </label>
               <input
                 required
+                autoComplete="password"
                 value={userData.password}
                 placeholder="Example@24"
                 onChange={(e) =>
@@ -125,8 +127,12 @@ const Login = () => {
               />
             </div>
             <div className="d-flex justify-content-center mb-2">
-              <button type="submit" className="btn btn-success w-50 me-1">
-                Login
+              <button
+                disabled={loading}
+                type="submit"
+                className="btn btn-success w-50 me-1"
+              >
+                {loading ? "Login..." : "Login"}
               </button>
               <Link
                 className="btn btn-outline-success text-black w-50 ms-1"

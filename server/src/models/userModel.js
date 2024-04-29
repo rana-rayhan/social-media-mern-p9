@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const { default_demo_id } = require("../secret");
 
 const userSchema = new mongoose.Schema(
   {
@@ -20,7 +21,7 @@ const userSchema = new mongoose.Schema(
     followers: [],
     following: {
       type: [String],
-      default: ["64d80cb8ff59986048a21977"],
+      default: [default_demo_id],
     },
   },
   { timestamps: true }

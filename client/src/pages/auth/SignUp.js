@@ -12,6 +12,7 @@ import "./style.css"; // Import the same "Login.css" file for styling
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   // const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -31,21 +32,18 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       await axios.post(`${base_url}/api/auth/register`, userData);
 
       toast.success("Registered successfully. Please login.");
+      setLoading(false);
       navigate("/login");
-      // setTimeout(() => {
-      //   setMessage("");
-      // }, 9000);
     } catch (error) {
-      toast.error(error.response.data.message);
+      setLoading(false);
+      toast.error(error?.response?.data?.message);
       // setMessage(error.response.data.message);
-      // setTimeout(() => {
-      //   setMessage("");
-      // }, 9000);
     }
   };
 
@@ -68,6 +66,7 @@ const SignUp = () => {
               </label>
               <input
                 required
+                autoComplete="full name"
                 value={userData.name}
                 type="text"
                 placeholder="Your full name"
@@ -84,6 +83,7 @@ const SignUp = () => {
               </label>
               <input
                 required
+                autoComplete="email"
                 value={userData.email}
                 placeholder="example@gmail.com"
                 onChange={(e) =>
@@ -102,6 +102,7 @@ const SignUp = () => {
               </label>
               <input
                 required
+                autoComplete="password"
                 value={userData.password}
                 placeholder="Example@24"
                 onChange={(e) =>
@@ -126,8 +127,12 @@ const SignUp = () => {
               />
             </div>
             <div className="d-flex justify-content-center mb-2">
-              <button type="submit" className="btn btn-success w-50 me-1">
-                Signup
+              <button
+                disabled={loading}
+                type="submit"
+                className="btn btn-success w-50 me-1"
+              >
+                {loading ? "Signup..." : "Signup"}
               </button>
               <Link className="btn btn-outline-success w-50 ms-1" to={"/login"}>
                 Login
